@@ -12,12 +12,12 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 NAME=$($BIN_DIR/detect $BUILD_DIR)
-PIP_DOWNLOAD_CACHE=${PIP_DOWNLOAD_CACHE:-$CACHE_DIR/pip_downloads}
+#PIP_DOWNLOAD_CACHE=${PIP_DOWNLOAD_CACHE:-$CACHE_DIR/pip_downloads}
 VIRTUALENV_DIRS="bin include lib"
 VENDORED_MEMCACHED="http://cl.ly/0a191R3K160t1w1P0N25/vendor-libmemcached.tar.gz"
 
 unset GIT_DIR
-export PIP_DOWNLOAD_CACHE
+#export PIP_DOWNLOAD_CACHE
 
 indent() {
   RE="s/^/       /"
@@ -48,9 +48,9 @@ fi
 
 # Copy artifacts out of cache if exists.
 mkdir -p $CACHE_DIR
-for dir in $VIRTUALENV_DIRS; do
-  cp -R $CACHE_DIR/$dir . &> /dev/null || true
-done
+#for dir in $VIRTUALENV_DIRS; do
+#  cp -R $CACHE_DIR/$dir . &> /dev/null || true
+#done
 
 # Create virtualenv. Rebuild if corrupt.
 set +e
@@ -106,7 +106,7 @@ OUT=$(virtualenv --relocatable .)
 set -e
 
 # Store new artifacts in cache.
-for dir in $VIRTUALENV_DIRS; do
-  rm -rf $CACHE_DIR/$dir
-  cp -R $dir $CACHE_DIR/
-done
+#for dir in $VIRTUALENV_DIRS; do
+#  rm -rf $CACHE_DIR/$dir
+#  cp -R $dir $CACHE_DIR/
+#done
